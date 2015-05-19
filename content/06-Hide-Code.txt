@@ -1,0 +1,14 @@
+Title: Hide Codeblock
+
+====
+
+Content:
+
+If you want to hide your Codeblock just add the Key "Showcode" and set it to 'no'.
+
+
+====
+
+Pattern:
+
+Showcode: no

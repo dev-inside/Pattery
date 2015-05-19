@@ -1,0 +1,25 @@
+Title: Customize the HTML-Block
+
+====
+
+Content:
+You can add your custom-styles for the html-preview-block via LESS. Use *.body* as parent-class. Open *system/assets/style.less* and edit the file. Thanks to Less.js the file will be automatically compiled.
+
+====
+
+Pattern:
+
+@body-bg: #666;
+@body-padding: 15px;
+@body-color: #fff;
+
+.body{
+    background: @body-bg;
+    color: @body-color;
+    padding: @body-padding;
+
+    h1, h2{
+        font-family: times;
+        color: @body-color;
+    }
+}

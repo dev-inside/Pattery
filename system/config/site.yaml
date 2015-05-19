@@ -1,0 +1,11 @@
+# Title
+title: Pattery
+
+# Meta-Description
+description: Pattery is a simple, flat-file-based pastebin/documentator written in PHP. You can simply store your scripts in the content-folder and add some extra-informations with ease.
+
+# Keywords
+keywords: documentation, styleguide, pattery, pastebin, markdown, flat-file-based,
+
+# language-iso-code
+iso: en

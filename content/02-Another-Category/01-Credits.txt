@@ -1,10 +1,9 @@
-#Pattery
+Title: Credits
 
-##pastebin/documentator/styleguide
-Pattery is a simple, flat-file-based pastebin/documentator/styleguide written in PHP. You can simply store your scripts in the content-folder and add some extra-informations with ease. 
+====
 
-See it in action:  
-<http://pattery.gregg.in>
+Content:
+![Konrad Schneider](files/konrad.jpg "Konrad Schneider")
 
 Pattery was designed and developed by Konrad Schneider in May 2015. If you hate it, love it or if you've questions, write me an eMail to <info@gregg.in>. You can ask me in English or in German.
 
@@ -20,4 +19,4 @@ Pattery was designed and developed by Konrad Schneider in May 2015. If you hate 
 - Metal/Hardcore-Music
 - Internet-Porn
 
-
+====

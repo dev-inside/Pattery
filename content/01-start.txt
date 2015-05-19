@@ -1,0 +1,27 @@
+Title: Pattery Docs
+
+====
+
+Content: Pattery is a simple, flat-file-based pastebin/documentator/styleguide written in PHP. You can simply store your scripts in the content-folder and add some extra-informations with ease. Just create a new file for example "02-headings.html" and add your content as following: *(Make shure, that you have no whitespace between the "="-Characters. I used it only for the demonstation)*
+
+====
+
+Pattern:
+
+Title:
+Your awesome scriptname
+
+= = = =
+
+Content:
+Your description of the snippet
+
+= = = =
+
+Pattern:
+
+<section>
+  <h1>Your Code</h1>
+</section>
+
+= = = =

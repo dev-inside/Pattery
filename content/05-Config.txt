@@ -1,0 +1,31 @@
+Title: Configuration
+
+====
+
+Content:
+
+##Enable extensions
+Shows the extensions in the sidebar
+
+##Select your style
+Patterys frontend is based on uikit and comes with five pre-defined themes:
+- default
+- default-dark
+- blue
+- almost-flat(uikit-standard)
+- gradient(uikit-standard)
+
+
+##Code-colorscheme
+pattery is a custom code-style. Pattery uses highlight.js for the Synthax-Highlighting. If you want to
+add an another colorscheme check out https://highlightjs.org/ and add the name without extension to codecolor
+for example replace pattery with "github" or "monokai"
+
+
+##Types
+A list of supported Programming-Languages for your documentation. If you miss something add it simply as list-item.
+
+The config files are stored under *'system/config/config.yaml'*.
+
+
+====

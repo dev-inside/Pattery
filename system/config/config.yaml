@@ -1,0 +1,63 @@
+# --------------------
+# enable extensions
+# --------------------
+#
+# Shows the extensions in the sidebar
+#
+#
+extensions: On
+
+# --------------------
+# select your style
+# --------------------
+#
+# Patterys frontend is based on
+# uikit and comes with five pre-
+# defined themes:
+# - default
+# - default-dark
+# - blue
+# - almost-flat(uikit-standard)
+# - gradient(uikit-standard)
+#
+#
+style: default
+
+# --------------------
+# code-colorscheme
+# --------------------
+#
+# pattery is a custom code-style.
+# Pattery uses highlight.js for the
+# Synthax-Highlighting. If you want to
+# add an another colorscheme check out
+# https://highlightjs.org/ and add the
+# name without extension ad codecolor
+# for example replace pattery with
+# "github" or "monokai"
+#
+#
+codecolor: pattery
+
+# --------------------
+# types
+# --------------------
+#
+# A list of supported Programming-Languages
+# for your documentation. If you miss something
+# add it simply as list-item.
+#
+#
+types:
+  - html
+  - htm
+  - md
+  - markdown
+  - txt
+  - php
+  - css
+  - js
+  - coffee
+  - less
+  - sass
+  - yaml
