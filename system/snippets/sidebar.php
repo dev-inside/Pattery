@@ -3,7 +3,7 @@
 			<h3 class="uk-panel-title"><?php echo $site->title ?></h3>
 			<ul class="uk-nav uk-nav-side">
 				<?php foreach($files as $file): ?>
-				<?php if($file->catTitle() == TRUE): ?>
+				<?php if($file->num() <= 1): ?>
 				<li class="uk-nav-header"><?php echo $file->catTitle() ?></li>
 			<?php endif ?>
 			<li>

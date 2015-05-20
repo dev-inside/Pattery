@@ -10,13 +10,14 @@
  */
 class Processor{
 
-    public $file = array();
+  public $file = array();
 
-    public function __construct($file){
-        $this->file         = $file;
-        $this->extension    = $this->extension();
-        $this->category     = ($this->category() == TRUE ? $this->category() : '00-Main');
-    }
+  public function __construct($file){
+    $this->file         = $file;
+    $this->num          = $this->num();
+    $this->extension    = $this->extension();
+    $this->category     = ($this->category() == TRUE ? $this->category() : '00-Main');
+  }
 
     /**
       * allowed-types to render
@@ -25,9 +26,21 @@ class Processor{
       *
       */
     public function allowed(){
-        $this->allowed = array('html', 'htm', 'md', 'markdown');
-        return $this->allowed;
+      $this->allowed = array('html', 'htm', 'md', 'markdown');
+      return $this->allowed;
     }
+
+    /**
+      * Get Number of File
+      *
+      * @return string
+      *
+      */
+       public function num(){
+        $matches = str_replace('content/', '', $this->getFilename());
+        $matches = explode('-', $matches);
+        return $matches[0];
+      }
 
     /**
       * strips off the file-extension
@@ -36,8 +49,8 @@ class Processor{
       *
       */
     public function extension(){
-        $matches = explode('.', $this->file);
-        return $matches[1];
+      $matches = explode('.', $this->file);
+      return $matches[1];
     }
 
     /**
@@ -47,8 +60,8 @@ class Processor{
       *
       */
     public function read(){
-        $html = file_get_contents($this->file);
-        return $html;
+      $html = file_get_contents($this->file);
+      return $html;
     }
 
     /**
@@ -58,23 +71,23 @@ class Processor{
       *
       */
     public function data(){
-        $getcontent = $this->read($this->file);
-        $getcontent = explode('====', $getcontent);
-        $this->code = end($getcontent);
-        $getcontent = array_filter($getcontent);
+      $getcontent = $this->read($this->file);
+      $getcontent = explode('====', $getcontent);
+      $this->code = end($getcontent);
+      $getcontent = array_filter($getcontent);
 
-        foreach($getcontent as $line){
-            list($key, $val) = explode(":", $line, 2);
+      foreach($getcontent as $line){
+        list($key, $val) = explode(":", $line, 2);
 
-            $key = trim($key);
-            $val = trim($val);
+        $key = trim($key);
+        $val = trim($val);
 
-            $key = strtolower($key);
-            if(!empty($key)){
-                $result[$key] = $val;
-            }
+        $key = strtolower($key);
+        if(!empty($key)){
+          $result[$key] = $val;
         }
-        return $result;
+      }
+      return $result;
     }
 
     /**
@@ -86,10 +99,10 @@ class Processor{
       *
       */
     public function select($select = null){
-        $data = $this->data($this->file);
-        if(!empty($data[$select])){
-            return $data[$select];
-        }
+      $data = $this->data($this->file);
+      if(!empty($data[$select])){
+        return $data[$select];
+      }
     }
 
     /**
@@ -100,7 +113,7 @@ class Processor{
       *
       */
     public function txt($select = null){
-        return $this->select($select);
+      return $this->select($select);
     }
 
     /**
@@ -110,7 +123,7 @@ class Processor{
       *
       */
     public function showcode(){
-        return $this->select('showcode');
+      return $this->select('showcode');
     }
 
     /**
@@ -121,9 +134,9 @@ class Processor{
       *
       */
     public function content($select = 'content'){
-        $content = $this->select($select) . "\n";
-        $md = new Parsedown();
-        return $md->text($content) . PHP_EOL;
+      $content = $this->select($select) . "\n";
+      $md = new Parsedown();
+      return $md->text($content) . PHP_EOL;
     }
 
     /**
@@ -134,14 +147,14 @@ class Processor{
       *
       */
     public function html($select = 'pattern'){
-        if(in_array($this->extension($this->file), $this->allowed($this->file))){
-            $html = $this->select($select);
-            $md = new Parsedown();
-            $sec = '<section class="body">' . "\n";
-            $sec .= $md->text($html) . PHP_EOL;
-            $sec .= '</section>' . "\n";
-            return $sec;
-        }
+      if(in_array($this->extension($this->file), $this->allowed($this->file))){
+        $html = $this->select($select);
+        $md = new Parsedown();
+        $sec = '<section class="body">' . "\n";
+        $sec .= $md->text($html) . PHP_EOL;
+        $sec .= '</section>' . "\n";
+        return $sec;
+      }
     }
 
     /**
@@ -152,15 +165,15 @@ class Processor{
       *
       */
     public function code($select = 'pattern'){
-        if($this->showcode() != strtolower('no')){
-            $pattern = '```' . $this->extension() . "\n";
-            $pattern .= $this->select($select) . "\n";
-            $pattern .= '```' . "\n";
-            $md = new Parsedown();
-            if(strlen($this->select($select)) != 0){
-                return $md->text($pattern) . PHP_EOL;
-            }
+      if($this->showcode() != strtolower('no')){
+        $pattern = '```' . $this->extension() . "\n";
+        $pattern .= $this->select($select) . "\n";
+        $pattern .= '```' . "\n";
+        $md = new Parsedown();
+        if(strlen($this->select($select)) != 0){
+          return $md->text($pattern) . PHP_EOL;
         }
+      }
     }
 
     /**
@@ -171,12 +184,12 @@ class Processor{
       * @return string
       *
       */
-     public function raw($select = 'pattern'){
-        if($this->showcode() != strtolower('no')){
-            if(strlen($this->select($select)) != 0){
-                return '<xmp>' . $this->select($select) . '</xmp>' . PHP_EOL;
-            }
+    public function raw($select = 'pattern'){
+      if($this->showcode() != strtolower('no')){
+        if(strlen($this->select($select)) != 0){
+          return '<xmp>' . $this->select($select) . '</xmp>' . PHP_EOL;
         }
+      }
     }
 
     /**
@@ -186,9 +199,9 @@ class Processor{
       *
       */
     public function getFilename(){
-        $file = explode(DS, $this->file);
-        $file = end($file);
-        return $file;
+      $file = explode(DS, $this->file);
+      $file = end($file);
+      return $file;
     }
 
     /**
@@ -199,13 +212,13 @@ class Processor{
       *
       */
     public function category(){
-        $category = str_replace('content' . DS, '', $this->file);
-        $category = str_replace($this->getFilename(), '', $category);
-        $category = rtrim($category, DS);
-        $category = explode(DS, $category);
-        if(!empty($category)){
-            return end($category);
-        }
+      $category = str_replace('content' . DS, '', $this->file);
+      $category = str_replace($this->getFilename(), '', $category);
+      $category = rtrim($category, DS);
+      $category = explode(DS, $category);
+      if(!empty($category)){
+        return end($category);
+      }
     }
 
     /**
@@ -215,9 +228,9 @@ class Processor{
       *
       */
     public function id(){
-        $file = str_replace('content' . DS, '', $this->file);
-        $file = str_replace(DS, '-', $file);
-        return preg_replace('/.[^.]*$/', '', $file);
+      $file = str_replace('content' . DS, '', $this->file);
+      $file = str_replace(DS, '-', $file);
+      return preg_replace('/.[^.]*$/', '', $file);
     }
 
     /**
@@ -228,9 +241,9 @@ class Processor{
       *
       */
     public function fname(){
-        $file = preg_replace('/(^[0-9])\w+-/', '', $this->getFilename());
-        $file = preg_replace('/.[^.]*$/', '', $file);
-        return mb_convert_case($file, MB_CASE_TITLE, "UTF-8");
+      $file = preg_replace('/(^[0-9])\w+-/', '', $this->getFilename());
+      $file = preg_replace('/.[^.]*$/', '', $file);
+      return mb_convert_case($file, MB_CASE_TITLE, "UTF-8");
     }
 
     /**
@@ -241,9 +254,9 @@ class Processor{
       *
       */
     public function catTitle(){
-        $title = preg_replace('/(^[0-9])\w+-/', '', $this->category());
-        $title = preg_replace('/\\.[^.\\s]{2,3}$/', '', $title);
-        return mb_convert_case($title, MB_CASE_TITLE, "UTF-8");
+      $title = preg_replace('/(^[0-9])\w+-/', '', $this->category());
+      $title = preg_replace('/\\.[^.\\s]{2,3}$/', '', $title);
+      return mb_convert_case($title, MB_CASE_TITLE, "UTF-8");
     }
-}
-?>
+  }
+  ?>

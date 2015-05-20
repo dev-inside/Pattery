@@ -7,5 +7,11 @@ Content:
 Just extrat Pattery to your Server. Visit Pattery *http://localhost/yourfolder/*  and check out, if the "Download"-button
 works. If not, just make the *"files"-directory* writeable *(chmod -777)*.
 
+- You can get the Pack on Github:  
+<https://github.com/dev-inside/pattery>
+
+- Or on Bitbucket  
+<https://bitbucket.org/devinside/pattery/>
+
 
 ====

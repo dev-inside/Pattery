@@ -2,6 +2,6 @@ Title: Add Categories to the Navigation
 
 ====
 
-Content: If you want to add a new category, then create a subfolder beneath the content-directory and name it for example *"01-Category"*. All files which are stored in that directory, will be automatically appear under this subsection.
+Content: If you want to add a new category, then create a subfolder beneath the content-directory and name it for example *"01-Category"*. All files which are stored in that directory, will be automatically appear under this subsection. *Note: The Category-Header only appears, if you give your files Numbers likee "01-yourfile.ext"*.
 
 ====
