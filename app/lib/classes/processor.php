@@ -187,7 +187,7 @@ class Processor{
     public function raw($select = 'pattern'){
       if($this->showcode() != strtolower('no')){
         if(strlen($this->select($select)) != 0){
-          return '<xmp>' . $this->select($select) . '</xmp>' . PHP_EOL;
+          return '<xmp class="uk-text-break">' . $this->select($select) . '</xmp>' . PHP_EOL;
         }
       }
     }
