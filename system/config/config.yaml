@@ -17,6 +17,7 @@ extensions: On
 # - default
 # - default-dark
 # - blue
+# - kirby (Oriented on Kirby-CD)
 # - almost-flat(uikit-standard)
 # - gradient(uikit-standard)
 #

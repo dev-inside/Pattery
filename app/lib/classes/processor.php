@@ -36,11 +36,11 @@ class Processor{
       * @return string
       *
       */
-       public function num(){
-        $matches = str_replace('content/', '', $this->getFilename());
-        $matches = explode('-', $matches);
-        return $matches[0];
-      }
+    public function num(){
+      $matches = str_replace('content/', '', $this->getFilename());
+      $matches = explode('-', $matches);
+      return $matches[0];
+    }
 
     /**
       * strips off the file-extension
@@ -61,7 +61,8 @@ class Processor{
       */
     public function read(){
       $html = file_get_contents($this->file);
-      return $html;
+      return mb_convert_encoding($html, 'UTF-8', 
+        mb_detect_encoding($html, 'UTF-8, ISO-8859-1', true));
     }
 
     /**
@@ -72,7 +73,7 @@ class Processor{
       */
     public function data(){
       $getcontent = $this->read($this->file);
-      $getcontent = explode('====', $getcontent);
+      $getcontent = preg_split('!\n====\s*\n*!', $getcontent);
       $this->code = end($getcontent);
       $getcontent = array_filter($getcontent);
 
@@ -80,6 +81,7 @@ class Processor{
         list($key, $val) = explode(":", $line, 2);
 
         $key = trim($key);
+        $key = preg_replace( "/\r|\n/", "", $key);
         $val = trim($val);
 
         $key = strtolower($key);

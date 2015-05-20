@@ -12,6 +12,7 @@ Patterys frontend is based on uikit and comes with five pre-defined themes:
 - default
 - default-dark
 - blue
+- kirby (Oriented on Kirby-CD)
 - almost-flat(uikit-standard)
 - gradient(uikit-standard)
 
